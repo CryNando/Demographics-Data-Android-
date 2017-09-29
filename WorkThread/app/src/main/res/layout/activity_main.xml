@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.root.workthread.MainActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/showGraph"
+        android:layout_width="match_parent"
+        android:layout_height="480dp">
+
+        <TextView
+            android:id="@+id/tvHere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/showGraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+
+    <Spinner
+        android:id="@+id/country"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/items"
+       >
+    </Spinner>
+
+        <Spinner
+            android:id="@+id/topics"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/country"
+            android:entries="@array/items" />
+
+    <EditText
+        android:id="@+id/InicialDate"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/topics"
+        android:hint="Inicial Date"
+        />
+
+    <EditText
+        android:id="@+id/EndDate"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/InicialDate"
+        android:hint="Date Date"
+        android:layout_marginLeft="20dp"
+        />
+
+    <Button
+        android:id="@+id/btnGo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gerar"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/InicialDate"
+        />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

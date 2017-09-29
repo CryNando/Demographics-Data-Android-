@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">WorkThread</string>
+    <string name="action_settings">Settings</string>
+
+    <array name="items">
+        <item>us</item>
+        <item>population</item>
+        <item>br</item>
+        <item>gb</item>
+    </array>
+</resources>
