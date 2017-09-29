@@ -1,7 +1,6 @@
 package com.example.root.workthread;
 
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -22,28 +21,36 @@ public class InternetAsync extends AsyncTask<String, Void, String> {
 
     public static final String key = "11521db3f9e377bf";
     public static final String hostUrl = "http://inqstatsapi.inqubu.com/?api_key=" + key;
-    private TextView textView;
+    private TextView txtResult;
+    private String option;
 
 
 
-    public InternetAsync(TextView tv){
-        this.textView = tv;
+    public InternetAsync(TextView txtResult){
+        this.txtResult = txtResult;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        txtResult.setText("");
     }
 
     @Override
     protected String doInBackground(String... args) {
 
         String host = hostUrl;
-        host += "&data=" + args[0] + "&countries=" + args[1] + "&years=" + args[2] + ":" + args[3];
+        host += "&countries=" + args[0] + "&data=" + args[1] + "&years=" + args[2] + ":" + args[3];
+        option = args[1];
 
         HttpURLConnection httpURLConnection;
 
         try {
             URL url = new URL(host);
             httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setReadTimeout(10000);
-            httpURLConnection.setConnectTimeout(15000);
+            //httpURLConnection.setReadTimeout(10000);
+            //httpURLConnection.setConnectTimeout(15000);
 
+            publishProgress();
             BufferedReader reader = new BufferedReader(new
                     InputStreamReader(httpURLConnection.getInputStream()));
 
@@ -63,6 +70,11 @@ public class InternetAsync extends AsyncTask<String, Void, String> {
     }
 
     @Override
+    protected void onProgressUpdate(Void... values) {
+        txtResult.append("Getting data... wait a moment..");
+    }
+
+    @Override
     protected void onPostExecute(String args) {
         InfoDemo infoDemo = new InfoDemo();
         try {
@@ -70,29 +82,23 @@ public class InternetAsync extends AsyncTask<String, Void, String> {
             JSONObject jsonObject = jsonArray.getJSONObject(0);
             infoDemo.setCountryCode(jsonObject.getString("countryCode"));
             infoDemo.setCountryName(jsonObject.getString("countryName"));
-            JSONArray jsonArray1 = jsonObject.getJSONArray("population");
+            JSONArray resultsArray = jsonObject.getJSONArray(option);
             int year;
             String data;
 
-            for(int i = 0; i<jsonArray1.length(); i++){
-                JSONObject jsonObject1 = jsonArray1.getJSONObject(i);
+            txtResult.setText("Starting...\n\n");
+            txtResult.append("CountryCode: " + infoDemo.getCountryCode() +
+                            "\nCountryName: " + infoDemo.getCountryName());
+
+            for(int i = 0; i<resultsArray.length(); i++){
+                JSONObject jsonObject1 = resultsArray.getJSONObject(i);
                 year  = Integer.valueOf((String) jsonObject1.get("year"));
                 data = (String) jsonObject1.get("data");
                 infoDemo.setResults(year,data);
+                txtResult.append("\nYear: " + year + " Data: " + infoDemo.getResult(year));
             }
 
-            textView.append("CountryCode " + infoDemo.getCountryCode() + "\nCountryName " + infoDemo.getCountryName());
-
-            for(int i = 0; i<jsonArray1.length(); i++){
-                JSONObject jsonObject1 = jsonArray1.getJSONObject(i);
-                year  = jsonObject1.getInt("year");
-                textView.append("\nYear: " + year + "Data: " + infoDemo.getResult(year));
-            }
-
-            textView.append("\n Finalizado");
-
-
-
+            txtResult.append("\n\n Finished");
 
         }catch (JSONException ex){
             ex.printStackTrace();

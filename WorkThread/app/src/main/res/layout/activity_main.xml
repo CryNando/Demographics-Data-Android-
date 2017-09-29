@@ -1,73 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.root.workthread.MainActivity">
+    android:layout_height="wrap_content"
+    tools:context="com.example.root.workthread.MainActivity"
+    android:padding="15dp">
 
 
-    <RelativeLayout
-        android:id="@+id/showGraph"
+    <LinearLayout
+        android:id="@+id/containerGraph"
         android:layout_width="match_parent"
-        android:layout_height="480dp">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/containerSpinners"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal|center_vertical">
 
         <TextView
             android:id="@+id/tvHere"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
+            android:layout_height="wrap_content"/>
 
-    <RelativeLayout
-        android:layout_below="@+id/showGraph"
-        android:layout_width="wrap_content"
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/containerSpinners"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true">
-
+        android:orientation="horizontal"
+        android:layout_above="@+id/containerEditTexts"
+        android:layout_marginTop="10dp">
 
     <Spinner
-        android:id="@+id/country"
-        android:layout_width="25dp"
+        android:id="@+id/countries"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:entries="@array/items"
-       >
-    </Spinner>
+        android:layout_weight="1"
+        android:entries="@array/countries_names" />
 
-        <Spinner
-            android:id="@+id/topics"
-            android:layout_width="25dp"
+    <Spinner
+        android:id="@+id/options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:entries="@array/options" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/containerEditTexts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_above="@+id/btnGo"
+        android:layout_marginTop="20dp">
+
+        <EditText
+            android:id="@+id/etInitialYear"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/country"
-            android:entries="@array/items" />
+            android:layout_weight="1"
+            android:hint="@string/initial_year" />
 
-    <EditText
-        android:id="@+id/InicialDate"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/topics"
-        android:hint="Inicial Date"
-        />
+        <EditText
+            android:id="@+id/etFinalYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/final_year"
+            android:layout_weight="1"/>
 
-    <EditText
-        android:id="@+id/EndDate"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/InicialDate"
-        android:hint="Date Date"
-        android:layout_marginLeft="20dp"
-        />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnGo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gerar"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/InicialDate"
-        />
-
-    </RelativeLayout>
-
-
+        android:text="@string/button_get_data"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

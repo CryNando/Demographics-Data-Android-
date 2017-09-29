@@ -2,10 +2,44 @@
     <string name="app_name">WorkThread</string>
     <string name="action_settings">Settings</string>
 
-    <array name="items">
-        <item>us</item>
-        <item>population</item>
+    <!-- EditText -->
+    <string name="initial_year">initial year</string>
+    <string name="final_year">final year</string>
+
+    <!-- Button -->
+    <string name="button_get_data">Get Data</string>
+
+    <string-array name="countries_abbr">
+        <item>ar</item>
+        <item>au</item>
         <item>br</item>
-        <item>gb</item>
-    </array>
+        <item>ca</item>
+        <item>cn</item>
+        <item>de</item>
+        <item>dk</item>
+        <item>it</item>
+        <item>tr</item>
+        <item>us</item>
+    </string-array>
+
+    <string-array name="countries_names">
+        <item>Argentina</item>
+        <item>Australia</item>
+        <item>Brazil</item>
+        <item>Canada</item>
+        <item>China</item>
+        <item>Germany</item>
+        <item>Denmark</item>
+        <item>Italy</item>
+        <item>Turkey</item>
+        <item>United States</item>
+    </string-array>
+
+    <string-array name="options">
+        <item>education_expenditure</item>
+        <item>fifa</item>
+        <item>health_expenditure</item>
+        <item>life_expectancy</item>
+        <item>population</item>
+    </string-array>
 </resources>
