@@ -34,12 +34,16 @@ public class MainActivity extends AppCompatActivity {
                 int pos = countriesSpinner.getSelectedItemPosition();
                 int pos2 = optionsSpinner.getSelectedItemPosition();
 
-                if(etFinalYear.getText().toString().equals("") || etInitialYear.getText().toString().equals("") ){
-                    Toast.makeText(getBaseContext(),"Fill all fields",Toast.LENGTH_SHORT).show();
-                }else if(Integer.parseInt(etInitialYear.getText().toString()) > Integer.parseInt(etFinalYear.getText().toString())){
-                    Toast.makeText(getBaseContext(),"Initial Year can't be greater than End Year", Toast.LENGTH_SHORT).show();
-                }else if(Integer.parseInt((etFinalYear.getText().toString())) > 2013){
-                    Toast.makeText(getBaseContext(),"The api only supports query up until 2013",Toast.LENGTH_SHORT).show();
+                String finalYear = etFinalYear.getText().toString();
+                String initialYear = etInitialYear.getText().toString();
+                if(finalYear.equals("") || initialYear.equals("") ){
+                    Toast.makeText(getBaseContext(),"Fill all fields", Toast.LENGTH_SHORT).show();
+                }else if(Integer.parseInt(initialYear) > Integer.parseInt(finalYear)){
+                    Toast.makeText(getBaseContext(),"Initial Year can't be greater than End Year",
+                            Toast.LENGTH_SHORT).show();
+                }else if(Integer.parseInt((finalYear)) > 2013){
+                    Toast.makeText(getBaseContext(), "The api only supports query up until 2013",
+                            Toast.LENGTH_SHORT).show();
                 }else {
                     internetAsync.execute(countriesAbbr[pos],
                             (String) optionsSpinner.getItemAtPosition(pos2),
