@@ -10,6 +10,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btGetData;
     private String[] countriesAbbr;
     private Button btShowGraph;
+    private InternetAsync internetAsync;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 btShowGraph.setTag(0);
                 btShowGraph.setBackgroundColor(getResources().getColor(R.color.button_unavailable));
-                InternetAsync internetAsync = new InternetAsync(getApplicationContext(), textView, btShowGraph);
+                internetAsync = new InternetAsync(getApplicationContext(), textView, btShowGraph);
                 int pos = countriesSpinner.getSelectedItemPosition();
                 int pos2 = optionsSpinner.getSelectedItemPosition();
 
@@ -66,12 +69,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if ((int)btShowGraph.getTag() == 1) {
+                    InfoDemo infoDemo = internetAsync.getResults();
                     Intent in = new Intent(MainActivity.this, GraphActivity.class);
+                    in.putExtra("results", infoDemo);
                     startActivity(in);
                 } else {
-                    Toast.makeText(MainActivity.this, "The data is not available yet. Please, wait a moment.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "The data is not available yet. Please, wait a moment.",
+                            Toast.LENGTH_SHORT).show();
                 }
-                
+
             }
         });
     }

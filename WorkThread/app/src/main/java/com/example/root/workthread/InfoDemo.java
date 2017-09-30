@@ -1,12 +1,13 @@
 package com.example.root.workthread;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * Created by root on 28/09/17.
  */
 
-public class InfoDemo {
+public class InfoDemo implements Serializable {
 
     private String countryCode;
     private String countryName;
