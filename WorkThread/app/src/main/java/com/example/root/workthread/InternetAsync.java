@@ -1,19 +1,16 @@
 package com.example.root.workthread;
 
 import android.os.AsyncTask;
-import android.webkit.WebView;
 import android.widget.TextView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
+
 
 
 /**
@@ -24,7 +21,7 @@ public class InternetAsync extends AsyncTask<String, Void, String> {
 
     public static final String key = "11521db3f9e377bf";
     public static final String hostUrl = "http://inqstatsapi.inqubu.com/?api_key=" + key;
-     private TextView txtResult;
+    private TextView txtResult;
     private String option;
 
 
