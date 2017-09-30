@@ -1,6 +1,7 @@
 package com.example.root.workthread;
 
 import android.os.AsyncTask;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -9,8 +10,10 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 
 /**
@@ -21,13 +24,13 @@ public class InternetAsync extends AsyncTask<String, Void, String> {
 
     public static final String key = "11521db3f9e377bf";
     public static final String hostUrl = "http://inqstatsapi.inqubu.com/?api_key=" + key;
-    private TextView txtResult;
+     private TextView txtResult;
     private String option;
 
 
 
-    public InternetAsync(TextView txtResult){
-        this.txtResult = txtResult;
+    public InternetAsync(TextView textView){
+        this.txtResult = textView;
     }
 
     @Override
@@ -86,9 +89,10 @@ public class InternetAsync extends AsyncTask<String, Void, String> {
             int year;
             String data;
 
-            txtResult.setText("Starting...\n\n");
-            txtResult.append("CountryCode: " + infoDemo.getCountryCode() +
-                            "\nCountryName: " + infoDemo.getCountryName());
+
+           txtResult.setText("Starting...\n\n");
+           txtResult.append("CountryCode: " + infoDemo.getCountryCode() +
+                       "\nCountryName: " + infoDemo.getCountryName());
 
             for(int i = 0; i<resultsArray.length(); i++){
                 JSONObject jsonObject1 = resultsArray.getJSONObject(i);
