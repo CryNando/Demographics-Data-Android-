@@ -1,6 +1,8 @@
 package com.example.root.workthread;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Button;
 import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,11 +25,13 @@ public class InternetAsync extends AsyncTask<String, Void, String> {
     public static final String hostUrl = "http://inqstatsapi.inqubu.com/?api_key=" + key;
     private TextView txtResult;
     private String option;
+    private Button btShowGraph;
+    private Context context;
 
-
-
-    public InternetAsync(TextView textView){
+    public InternetAsync(Context context, TextView textView, Button btShowGraph){
+        this.context = context;
         this.txtResult = textView;
+        this.btShowGraph = btShowGraph;
     }
 
     @Override
@@ -100,6 +104,8 @@ public class InternetAsync extends AsyncTask<String, Void, String> {
             }
 
             txtResult.append("\n\n Finished");
+            btShowGraph.setBackgroundColor(context.getResources().getColor(R.color.button_available));
+            btShowGraph.setTag(1);
 
         }catch (JSONException ex){
             ex.printStackTrace();

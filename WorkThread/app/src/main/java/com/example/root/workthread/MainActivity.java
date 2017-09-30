@@ -1,5 +1,6 @@
 package com.example.root.workthread;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText etFinalYear;
     private Button btGetData;
     private String[] countriesAbbr;
+    private Button btShowGraph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +29,16 @@ public class MainActivity extends AppCompatActivity {
         iniViews();
         countriesAbbr = getResources().getStringArray(R.array.countries_abbr);
 
+        // TAG will be used to check whether the user can click on this button or not
+        btShowGraph.setTag(0);
+        btShowGraph.setBackgroundColor(getResources().getColor(R.color.button_unavailable));
+
         btGetData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InternetAsync internetAsync = new InternetAsync(textView);
+                btShowGraph.setTag(0);
+                btShowGraph.setBackgroundColor(getResources().getColor(R.color.button_unavailable));
+                InternetAsync internetAsync = new InternetAsync(getApplicationContext(), textView, btShowGraph);
                 int pos = countriesSpinner.getSelectedItemPosition();
                 int pos2 = optionsSpinner.getSelectedItemPosition();
 
@@ -52,6 +60,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btShowGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if ((int)btShowGraph.getTag() == 1) {
+                    Intent in = new Intent(MainActivity.this, GraphActivity.class);
+                    startActivity(in);
+                } else {
+                    Toast.makeText(MainActivity.this, "The data is not available yet. Please, wait a moment.", Toast.LENGTH_SHORT).show();
+                }
+                
+            }
+        });
     }
 
     public void iniViews(){
@@ -60,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         optionsSpinner = (Spinner) findViewById(R.id.options);
         etInitialYear = (EditText) findViewById(R.id.etInitialYear);
         etFinalYear = (EditText) findViewById(R.id.etFinalYear);
-        btGetData = (Button) findViewById(R.id.btnGo);
-
+        btGetData = (Button) findViewById(R.id.btGetData);
+        btShowGraph = (Button) findViewById(R.id.btShowGraph);
     }
 }

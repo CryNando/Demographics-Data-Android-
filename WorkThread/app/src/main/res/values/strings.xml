@@ -8,6 +8,7 @@
 
     <!-- Button -->
     <string name="button_get_data">Get Data</string>
+    <string name="button_show_graph">Show Graph</string>
 
     <string-array name="countries_abbr">
         <item>ar</item>

@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_above="@+id/btnGo"
+        android:layout_above="@+id/containerButtons"
         android:layout_marginTop="20dp">
 
         <EditText
@@ -70,12 +70,31 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnGo"
+    <LinearLayout
+        android:id="@+id/containerButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_get_data"
-        android:layout_alignParentBottom="true"/>
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btGetData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_get_data"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btShowGraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_show_graph"
+            android:layout_weight="1"
+            android:textColor="#FFF"/>
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>
 
